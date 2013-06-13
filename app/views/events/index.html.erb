@@ -1,0 +1,31 @@
+<h1><%= pluralize(@events.size, 'Event') %> </h1>
+
+	<% @events.each do |events| %>
+	<article class="event">
+
+		<header>
+			<%= image_for(events) %>
+			<h2><%= link_to(events.namre, events ) %> </h2>
+			<h3><%= pluralize(events.spots_left, 'spot') %>available</h3>
+		</header>
+		<p>
+			<%= truncate(events.description,length: 35, separator:' ') %>
+		</p>
+		<table>
+			<tr>
+				<th>When:</th>
+				<td><%= events.starts_at.to_s(:default) %></td>
+			</tr>
+			<tr>
+				<th>Where:</th>
+				<td><%= events.location %></td>
+			</tr>
+			<tr>
+				<th>Price</th>
+				<td><%= format_price(events) %></td>
+			</tr>
+		</table>
+	</article>
+
+
+<%end%>

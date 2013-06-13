@@ -1,0 +1,36 @@
+<h1>Events </h1>
+
+<%= @events.namre %>
+
+<article>
+
+		<header>
+			<%= image_for(@events) %>
+			<h2><%= @events.namre %> </h2>
+		</header>
+		<p>
+			<%= @events.description %>
+		</p>
+		<table>
+			<tr>
+				<th>When:</th>
+				<td><%= @events.starts_at.to_s(:default) %></td>
+			</tr>
+			<tr>
+				<th>Where:</th>
+				<td><%= @events.location %></td>
+			</tr>
+			<tr>
+				<th>Price</th>
+				<td><%= format_price(@events) %></td>
+			</tr>
+		</table>
+		<h3>Capacity</h3>
+		<%= pluralize(@events.capacity, 'spot') %>
+	</article>
+	<br/>
+	<%= link_to "Who's Registered?", event_registrations_path(@events) %> |
+	<%=register_link(@events)%> | 
+	<%= link_to "Edit", edit_event_path(@events)%> |
+	<%= link_to "Delete", event_path(@events), method: :delete, data: {confirm: 'Are you Sure?'} %>
+	<p>(<%= pluralize(@events.spots_left, 'spot')%> available) </p>
